@@ -1,0 +1,51 @@
+const Controller = require('./controller');
+const Logger = require('./logger');
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const HttpError = require('http-errors');
+
+const logger = new Logger('Server');
+const PORT = 3001;
+
+const server = {};
+
+server.startServer = () => {
+    const app = express();
+
+    app.use(bodyParser.json());
+
+    app.use((request, response, next) => {
+        logger.info('Incoming request: ' + request.method + ' ' + request.url);
+        next();
+    });
+
+    app.post('/book', (request, response) => {
+        Controller.postBook(request, response);
+    });
+
+    app.use((request, response) => {
+        throw new HttpError(
+            404,
+            'Invalid Route: ' + request.method + ' ' + request.url
+        );
+    });
+
+    app.use(errorHandler);
+
+    app.listen(PORT, () => {
+        logger.info('Started listening on http://localhost:' + PORT + '/');
+    }).on('error', () => {
+        logger.error('Server already running.');
+        logger.warning('To restart it, find and kill the process or ' +
+            'reboot the device: `sudo reboot`');
+        process.exit();
+    });
+};
+
+function errorHandler (error, request, response, next) {
+    logger.error(error.statusCode + ' ' + error.message);
+    response.status(error.statusCode).json({message: error.message});
+}
+
+module.exports = server;
