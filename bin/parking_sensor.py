@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BCM)
+#GPIO.setmode(GPIO.BCM)
 
 TRIG = 23
 ECHO = 24
@@ -10,7 +10,7 @@ print "initializing parking service"
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(TRIG,GPIO.IN)
 GPIO.setwarnings(False)
-#GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
 
 
