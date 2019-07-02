@@ -2,38 +2,39 @@ const BackendService = require('./backend-service');
 const Logger = require('./logger');
 
 const logger = new Logger('Spod Service');
+
 const spodService = {};
 
-spodService.join = () => {
+spodService.park = () => {
     return new Promise((resolve, reject) => {
         logger.info('Car parked');
 
-        BackendService.get('join')
+        BackendService.get('park')
             .then(() => {
                 logger.success('Join event fired');
                 resolve();
             })
             .catch(() => {
-                logger.error('Failed to send join event');
+                logger.error('Failed to send park event');
                 reject({
                     code: 500,
-                    message: 'Error: Failed to send join event.'
+                    message: 'Error: Failed to send park event.'
                 });
             });
     });
 };
 
-spodService.leave = () => {
+spodService.unpark = () => {
     return new Promise((resolve, reject) => {
-        logger.info('Car left');
+        logger.info('Car unparked');
 
-        BackendService.get('leave')
+        BackendService.get('unpark')
             .then(() => {
-                logger.success('Leave event fired');
+                logger.success('Unpark event fired');
                 resolve();
             })
             .catch(() => {
-                logger.error('Failed to send leave event');
+                logger.error('Failed to send unpark event');
                 reject({
                     code: 500,
                     message: 'Error: Failed to send leave event.'

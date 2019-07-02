@@ -20,8 +20,16 @@ server.startServer = () => {
         next();
     });
 
-    app.post('/book', (request, response) => {
-        Controller.postBook(request, response);
+    app.get('/book', (request, response) => {
+        Controller.postBook();
+    });
+
+    app.get('/park', (request, response) => {
+        Controller.carParked();
+    });
+
+    app.get('/unpark', (request, response) => {
+        Controller.carUnparked();
     });
 
     app.use((request, response) => {
