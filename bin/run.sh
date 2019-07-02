@@ -28,6 +28,7 @@ else
 	if  [ "$on" == "true"  ]
 	then
 	on="false"
+	LED=$(python ledoff.py)
 	REQ=$(curl localhost:3001/unpark)
 	fi
 fi
