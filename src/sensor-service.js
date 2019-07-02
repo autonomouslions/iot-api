@@ -1,10 +1,13 @@
-const sensorService = {}
-const lampService = require('./lamp-service')
+const Logger = require('./logger');
+const controller = require('./controller');
+
+const logger = new Logger('Sensor Service');
+const sensorService = {};
 
 sensorService.getInput = (sensor) => {
     if (sensor === true) {
-        lampService.setLight('red');
+        controller.carParked();
     } else {
-        lampService.setLight('green');
+        controller.carUnparked();
     }
 }
