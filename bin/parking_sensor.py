@@ -7,10 +7,10 @@ ECHO = 24
 
 print "initializing parking service"
 
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(TRIG,GPIO.IN)
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
 GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW)
 
 
