@@ -50,7 +50,6 @@ server.startServer = () => {
 };
 
 function errorHandler (error, request, response, next) {
-    logger.error(error.statusCode + ' ' + error.message);
     response.status(error.statusCode).json({message: error.message});
 }
 
