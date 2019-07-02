@@ -2,7 +2,7 @@ const http = require('http');
 const Logger = require('./logger');
 
 const logger = new Logger('Backend Service');
-const HOST = '10.1.128.207';
+const HOST = '192.168.43.150';
 const PORT = 3000;
 const ENDPOINT_PREFIX = '/';
 const ENCODING_UTF8 = 'utf8';
