@@ -9,7 +9,7 @@ class Logger {
     }
 
     success (message) {
-        this._log(GREEN, 'SUCCESS', message);
+        this._log(GREEN, 'INFO', message);
     }
 
     info (message) {
@@ -17,11 +17,11 @@ class Logger {
     }
 
     warning (message) {
-        this._log(YELLOW, 'WARNING', message);
+        this._log(YELLOW, 'INFO', message);
     }
 
     error (message) {
-        this._log(RED, 'ERROR', message);
+        this._log(RED, 'INFO', message);
     }
 
     _log (color, level, message) {

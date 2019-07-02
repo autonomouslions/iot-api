@@ -9,13 +9,13 @@ spodService.park = () => {
     return new Promise((resolve, reject) => {
         logger.info('Car parked');
 
-        BackendService.get('park')
+        BackendService.get('busy')
             .then(() => {
-                logger.success('Join event fired');
+                logger.info('Join event fired');
                 resolve();
             })
             .catch(() => {
-                logger.error('Failed to send park event');
+                logger.info('Failed to send park event');
                 reject({
                     code: 500,
                     message: 'Error: Failed to send park event.'
@@ -28,13 +28,13 @@ spodService.unpark = () => {
     return new Promise((resolve, reject) => {
         logger.info('Car unparked');
 
-        BackendService.get('unpark')
+        BackendService.get('free')
             .then(() => {
-                logger.success('Unpark event fired');
+                logger.info('Unpark event fired');
                 resolve();
             })
             .catch(() => {
-                logger.error('Failed to send unpark event');
+                logger.info('Failed to send unpark event');
                 reject({
                     code: 500,
                     message: 'Error: Failed to send leave event.'

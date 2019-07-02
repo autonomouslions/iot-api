@@ -1,7 +1,10 @@
-const https = require('https');
-const HOST = 'placeholder.placeholder.io';
-const PORT = 443;
-const ENDPOINT_PREFIX = '/placeholder/';
+const http = require('http');
+const Logger = require('./logger');
+
+const logger = new Logger('Backend Service');
+const HOST = '10.1.128.207';
+const PORT = 3000;
+const ENDPOINT_PREFIX = '/';
 const ENCODING_UTF8 = 'utf8';
 
 const backendService = {};
@@ -9,7 +12,7 @@ const backendService = {};
 backendService.get = async (resource) => {
     return new Promise((resolve, reject) => {
         const parameters = createGetRequest(resource);
-        const request = https.get(parameters, (response) => {
+        const request = http.get(parameters, (response) => {
             response.setEncoding(ENCODING_UTF8);
             let body = '';
             response.on('data', (chunk) => {
@@ -28,7 +31,7 @@ function createGetRequest (resource) {
         hostname: HOST,
         port: PORT,
         path: ENDPOINT_PREFIX + resource,
-        agent: new https.Agent({
+        agent: new http.Agent({
             maxCachedSessions: 0
         })
     };
